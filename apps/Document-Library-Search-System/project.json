@@ -26,6 +26,7 @@
           }
         ],
         "styles": [
+          "apps/Document-Library-Search-System/src/custom-theme.scss",
           "apps/Document-Library-Search-System/src/styles.css"
         ]
       },
