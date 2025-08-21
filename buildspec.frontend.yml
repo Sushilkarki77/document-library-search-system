@@ -10,7 +10,7 @@ phases:
 
   build:
     commands:
-      - npx nx build Document-Library-Search-System
+      - npx nx build Document-Library-Search-System --verbose
       # - echo "Invalidating CloudFront distribution $DISTRIBUTION_ID..."
       # - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
 
