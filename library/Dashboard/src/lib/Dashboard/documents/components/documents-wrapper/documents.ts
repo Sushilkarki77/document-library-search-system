@@ -49,7 +49,7 @@ const sortDocuments = <T extends Record<string, any>>(docs: T[], sortState: Sort
 
 @Component({
   selector: 'lib-documents',
-  imports: [DocumentList, DocViewer, MatCardModule, MatIcon, MatButton, MatPaginatorModule, MatProgressBar],
+  imports: [DocumentList, MatCardModule, MatIcon, MatButton, MatPaginatorModule, MatProgressBar],
   templateUrl: './documents.html',
   styleUrl: './documents.css'
 })
@@ -91,7 +91,7 @@ export class Documents {
         this.$documents.set(res.data);
         this.$componentState.set('completed');
       }, (err: HttpErrorResponse) => {
-        if(err.status != 401) this.$componentState.set('error')
+        if (err.status != 401) this.$componentState.set('error')
       })
     });
   }
@@ -136,9 +136,7 @@ export class Documents {
       })
     ).subscribe({
       next: (event: HttpEvent<null>) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          const percent = Math.round((event.loaded / (event.total || 1)) * 100);
-        }
+       
 
         if (event.type === HttpEventType.Response) {
           this.toastService.show("Upload successful!");

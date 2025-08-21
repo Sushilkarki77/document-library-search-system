@@ -17,7 +17,7 @@ import { DocViewer } from '../documents/components/doc-viewer/doc-viewer';
 
 @Component({
   selector: 'lib-search',
-  imports: [FormsModule, MatIconButton, MatIcon, CommonModule, SearchItem, SafeHTML, MatProgressBarModule, MatPaginator, DocViewer],
+  imports: [FormsModule, MatIconButton, MatIcon, CommonModule, SearchItem, SafeHTML, MatProgressBarModule, MatPaginator],
   templateUrl: './search.html',
   styleUrl: './search.css'
 })
