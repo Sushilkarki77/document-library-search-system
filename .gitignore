@@ -45,4 +45,4 @@ Thumbs.db
 
 .angular
 
-/document-library-backend/.env
+/apps/document-library-backend/.env
