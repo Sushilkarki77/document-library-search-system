@@ -1,0 +1,26 @@
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.dialog-header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: end;
+    width: 99%
+}
+
+
+.custom-button-plain:hover {
+  background: #ffff;
+}
+
+.close-btn-dialog {
+  font-size: 1rem;
+      transform: translateY(18%);
+      cursor: pointer;
+}

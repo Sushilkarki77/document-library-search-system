@@ -1,0 +1,11 @@
+<div class="dialog-header">
+
+  <mat-icon class="mr-1 close-btn-dialog" (click)="closeOverlay()">close</mat-icon>
+
+</div>
+
+@if(windowWidth()) {
+<div class="dialog-content">
+  <iframe [src]="pdfUrl | safePipe" [width]="windowWidth()" [height]="windowHeight()" allow="fullscreen"></iframe>
+</div>
+}

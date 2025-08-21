@@ -1,0 +1,29 @@
+import { Component, EventEmitter, input,  Output } from '@angular/core';
+
+import { MatIcon } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { Document } from "../../documents.interface"
+import { DatePipe } from '@angular/common';
+
+
+@Component({
+  selector: 'lib-document-list',
+  imports: [MatTableModule, MatIcon,  DatePipe],
+  templateUrl: './document-list.html',
+  styleUrl: './document-list.css'
+})
+export class DocumentList {
+  displayedColumns = input.required<string[]>();
+  dataSource = input.required<Array<Document & { position: number }>>();
+
+
+  dateSort = input<'descending' | 'ascending' | 'default'>('ascending')
+
+  @Output() viewEmit = new EventEmitter<string>();
+
+  @Output() deleteEmit = new EventEmitter<string>();
+
+  @Output() dateSortEmit = new EventEmitter<void>();
+
+  
+}

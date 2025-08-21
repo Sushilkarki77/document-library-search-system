@@ -56,7 +56,7 @@ export class AuthService {
     localStorage.clear();
     this.accessTokenValue = "";
     this.refreshTokenValue = "";
-    this.router.navigate(['login']);
+    this.router.navigate(['auth/login']);
   }
 
   set accessTokenValue(value: string) {

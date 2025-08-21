@@ -1,0 +1,38 @@
+@if( $componentState() === 'loading') {
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<mat-card class="card-full card-custom-bg-white">
+    <mat-card-title>
+        <div class="search-input-wrapper">
+            <span>Documents</span> <input class="search-input-documents" style="font-size: 1rem;" type="text"
+                placeholder="search.." [value]="$searchQuery()"
+                (input)="$searchQuery.set($any($event.target).value)">
+            <button mat-raised-button color="primary" (click)="openAddDialog()">
+                <mat-icon>add</mat-icon>
+                Add
+            </button>
+        </div>
+    </mat-card-title>
+    @switch ($componentState()) {
+    @case ('completed') {
+    <mat-card-content>
+        @if( $totalNumberOfDoc() > 0){
+        <lib-document-list class="documents-list" [dataSource]="$paginatedDocs()" [dateSort]="$sortState().dateSort"
+            (dateSortEmit)="handleDateSort()" [displayedColumns]="columnNames" (deleteEmit)="deleteDocument($event)"
+            (viewEmit)="viewDocument($event)"></lib-document-list>
+
+        <mat-paginator [length]="$totalNumberOfDoc()" (page)="handlePageEvent($event)" [pageSize]="pageSize"
+            [hidePageSize]="true" [pageIndex]="$pageIndex()" aria-label="Select page">
+
+        </mat-paginator>
+        } @else {
+        <div>No Documents!</div>
+        }
+
+    </mat-card-content>
+    } @case ('error') {
+    <div>Something went wrong, try again!</div>
+    }
+    }
+
+</mat-card>

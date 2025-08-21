@@ -7,7 +7,7 @@ import {
   HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, of, retry, retryWhen, switchMap, tap, throwError } from 'rxjs';
+import { Observable, of,  retryWhen, switchMap, tap, throwError } from 'rxjs';
 import { AuthService } from './auth-service';
 import { ResponseItem, TokenRes } from './interfaces';
 
@@ -65,6 +65,7 @@ export class HttpInterceptor implements AngularHttpInterceptor {
                 this.authService.refreshTokenValue = res?.data?.refreshToken;
               },
               error: (err: Error): void => {
+                console.log(err);
                 this.authService.logout();
               }
             });

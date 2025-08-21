@@ -8,7 +8,7 @@ export const loggedOutGuard: CanActivateFn = () => {
     const isLoggedIn = authService.isLoggedIn();
 
     if (isLoggedIn) {
-        router.navigate(['home'])
+        router.navigate(['dashboard'])
     }
     return true;
 };

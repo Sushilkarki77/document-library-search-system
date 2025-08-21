@@ -1,0 +1,30 @@
+<table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Document Title  </th>
+    <td class="title-content-table" mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="AddedDate">
+    <th mat-header-cell *matHeaderCellDef> Date <mat-icon class="sort-icon ml-1"  (click)="dateSortEmit.emit()">{{ (dateSort() === 'default' || dateSort() === 'descending') ? 'arrow_upward' : 'arrow_downward' }}</mat-icon> </th>
+    <td mat-cell *matCellDef="let element"> {{element.createdAt | date}}  </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      
+        <mat-icon (click)="viewEmit.emit(element._id)" style=" color: #1976d2;font-size: 1.25rem;cursor: pointer;">visibility</mat-icon>
+        <mat-icon  (click)="deleteEmit.emit(element._id)" style=" color: #d32f2f;font-size: 1.25rem;cursor: pointer;">delete</mat-icon>
+    
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns();"></tr>
+</table>
