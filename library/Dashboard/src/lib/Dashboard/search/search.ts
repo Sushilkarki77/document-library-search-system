@@ -114,13 +114,13 @@ export class Search {
         this.searchQuery.set(params['query']);
         this.$searchState.set('started');
         const pageIndex = Number(params['pageIndex'] ?? 0);
+        this.typeaheadResults.set(null);
         return this.searchService.searchExecute(params['query'], (pageIndex * this.pageSize), this.pageSize);
       })
     ).subscribe({
       next: (res) => {
         this.$searchState.set('completed');
         this.$searchResponse.set(res.data);
-        this.typeaheadResults.set(null);
       },
       error: (e) => {
         console.log(e);
