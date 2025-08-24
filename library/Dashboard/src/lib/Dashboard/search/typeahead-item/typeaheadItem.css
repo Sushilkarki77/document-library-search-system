@@ -1,0 +1,17 @@
+.typeahead-item-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.header-icon {
+  color: #1976d2;
+  min-width: max-content;
+}
+
+.doc-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

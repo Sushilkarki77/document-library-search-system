@@ -42,8 +42,8 @@ mat-progress-bar {
 
 .search-box {
   width: 600px;
-      max-width: 75vw;
-    padding: 1rem 2.7875rem 1rem 1rem;
+  max-width: 75vw;
+  padding: 1rem 2.7875rem 1rem 1rem;
   font-size: 1rem;
   background-color: var(--white);
   border: none;
@@ -87,4 +87,29 @@ mat-progress-bar {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+
+.searc-typeahead-wrapper {
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 1;
+  background: var(--white);
+  box-shadow: var(--navbar-shadow);
+  border-radius: 0.75rem;
+}
+
+
+lib-typeahead-item {
+  cursor: pointer;
+
+}
+
+lib-typeahead-item:hover {
+   color: #1976d2;
 }

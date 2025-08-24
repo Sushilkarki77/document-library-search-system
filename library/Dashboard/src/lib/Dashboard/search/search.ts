@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, HostListener, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from './services/search.service';
-import { filter, switchMap } from 'rxjs';
+import { debounceTime, EMPTY, filter, map, Subject, switchMap } from 'rxjs';
 import { SearchResponse } from './services/search.interface';
 import { SearchItem } from './search-item/search-item';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -14,10 +14,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { SafeHTML } from '../documents/components/safe-html/safe-html';
 import { DocViewer } from '../documents/components/doc-viewer/doc-viewer';
+import { TypeaheadItem } from './typeahead-item/typeaheadItem';
 
 @Component({
   selector: 'lib-search',
-  imports: [FormsModule, MatIconButton, MatIcon, CommonModule, SearchItem, SafeHTML, MatProgressBarModule, MatPaginator],
+  imports: [FormsModule, MatIconButton, MatIcon, CommonModule, SafeHTML, MatProgressBarModule, MatPaginator, SearchItem, TypeaheadItem],
   templateUrl: './search.html',
   styleUrl: './search.css'
 })
@@ -35,6 +36,18 @@ export class Search {
   documentAPIService = inject(DocumentsApiService);
   readonly dialog = inject(MatDialog);
 
+  private search$ = new Subject<string>();
+
+  typeaheadResults = signal<SearchResponse | null>(null);
+
+
+  searchInputChange(text: string) {
+    this.searchQuery.set(text);
+  }
+
+  inputChange = effect(() => {
+    this.search$.next(this.searchQuery())
+  });
 
   onSearch = () => {
     this.$pageIndex.set(0);
@@ -51,7 +64,48 @@ export class Search {
 
   constructor() {
     this.subscribeTOQueryParamChange();
+
+    this.search$
+      .pipe(
+        debounceTime(200),
+        map(value => value.trim()),
+        switchMap(value => {
+          if (!value) {
+            this.typeaheadResults.set(null);
+            return EMPTY;
+          }
+          return this.searchService.searchExecute(value, 0, 5).pipe(
+            map(res => res.data)
+          );
+        })
+      )
+      .subscribe(value => {
+        this.typeaheadResults.set(value);
+      });
   }
+
+
+  @HostListener('window:click', ['$event'])
+  handleClick(event: MouseEvent) {
+
+    if (event.target && this.hasSearchWrapper(event.target as HTMLElement)) {
+      console.log('Click happened inside .search-input-wrapper');
+    } else {
+      this.typeaheadResults.set(null);
+      console.log('Click happened outside');
+    }
+  }
+
+  private hasSearchWrapper(el: HTMLElement | null): boolean {
+    while (el) {
+      if (el.classList && el.classList.contains('search-input-wrapper')) {
+        return true;
+      }
+      el = el.parentElement;
+    }
+    return false;
+  }
+
 
   subscribeTOQueryParamChange = () => {
     this.route.queryParams.pipe(
@@ -62,13 +116,19 @@ export class Search {
         const pageIndex = Number(params['pageIndex'] ?? 0);
         return this.searchService.searchExecute(params['query'], (pageIndex * this.pageSize), this.pageSize);
       })
-    ).subscribe(res => {
-      this.$searchState.set('completed');
-      this.$searchResponse.set(res.data);
-    }, err => {
-      this.$searchState.set('failed');
+    ).subscribe({
+      next: (res) => {
+        this.$searchState.set('completed');
+        this.$searchResponse.set(res.data);
+        this.typeaheadResults.set(null);
+      },
+      error: (e) => {
+        console.log(e);
+        this.$searchState.set('failed');
+      }
     })
   }
+
 
 
   viewDocument = (_id: string) => {

@@ -5,11 +5,12 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withViewTransitions } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { API_URL, AuthService, HttpInterceptor } from "@document-library-search-system/Common";
 import { environment } from '../environments/environment';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const initializer = () => {
   const authService = inject(AuthService);
@@ -35,13 +36,14 @@ const initializer = () => {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-     provideAppInitializer(initializer),
+    provideAppInitializer(initializer),
     { provide: API_URL, useValue: environment.api_url },
     provideHttpClient(withInterceptorsFromDi()),
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
-     {
+ 
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptor,
       multi: true
@@ -49,3 +51,5 @@ export const appConfig: ApplicationConfig = {
 
   ],
 };
+
+
