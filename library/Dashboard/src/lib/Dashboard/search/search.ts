@@ -70,7 +70,7 @@ export class Search {
         debounceTime(200),
         map(value => value.trim()),
         switchMap(value => {
-          if (!value) {
+          if (!value ||  this.$searchState() == 'started') {
             this.typeaheadResults.set(null);
             return EMPTY;
           }
