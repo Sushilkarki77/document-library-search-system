@@ -6,13 +6,13 @@ import { Documents } from './lib/Dashboard/documents/components/documents-wrappe
 
 
 export const DashboardRoutes: Route[] = [
- {
+    {
         path: '', component: Dashboard, children: [
-            { path: '', redirectTo: 'search', pathMatch: 'full' },
-            { path: 'search', component: Search },
-            { path: 'documents', component: Documents }
+            { path: '', redirectTo: 'search', pathMatch: 'full', title: "Search" },
+            { path: 'search', component: Search, title: "Search" },
+            { path: 'documents', component: Documents, title: "Documents" }
         ]
     },
     { path: '**', redirectTo: 'search' }
- 
+
 ];

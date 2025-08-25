@@ -89,7 +89,7 @@ export class Search {
   handleClick(event: MouseEvent) {
 
     if (event.target && this.hasSearchWrapper(event.target as HTMLElement)) {
-      console.log('Click happened inside .search-input-wrapper');
+      console.log('Click happened inside .input-wrapper');
     } else {
       this.typeaheadResults.set(null);
       console.log('Click happened outside');
@@ -98,7 +98,7 @@ export class Search {
 
   private hasSearchWrapper(el: HTMLElement | null): boolean {
     while (el) {
-      if (el.classList && el.classList.contains('search-input-wrapper')) {
+      if (el.classList && el.classList.contains('input-wrapper')) {
         return true;
       }
       el = el.parentElement;

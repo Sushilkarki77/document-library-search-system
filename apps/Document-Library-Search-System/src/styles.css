@@ -15,6 +15,10 @@ body {
   );
 }
 
+* {
+   box-sizing: border-box;
+}
+
 :root {
   --primary-color: #1976d2; 
   --primary-color-hover: #1565c0;

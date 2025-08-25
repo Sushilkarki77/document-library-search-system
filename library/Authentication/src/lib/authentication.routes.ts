@@ -8,10 +8,12 @@ export const AuthenticationRoutes: Route[] = [
   {
     path: 'login',
     component: Login,
+    title: 'Login'
   },
   {
     path: 'register',
     component: Register,
+    title: 'Register'
   },
   // { path: '**', redirectTo: 'login' }
 ];
