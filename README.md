@@ -7,24 +7,31 @@ A signal-based Angular application built within an NX monorepo for efficient doc
 
 Features
 
-AWS S3 uploads for storing documents
+- AWS S3 uploads for storing documents
 
-Document chunking for optimized processing
+- Document chunking for optimized processing
 
-Vector embedding with OpenAI for semantic search
+- Vector embedding with OpenAI for semantic search
 
-RAG vectorization-powered search for fast, relevant results
+- RAG vectorization-powered search for fast, relevant results
 
-JWT-based authentication for secure access
+- JWT-based authentication for secure access
 
 Tech Stack
 
-Frontend: Angular (Signals), Material UI
+- Frontend: Angular (Signals), Material UI
 
-Backend: Node.js, Express.js
+- Backend: Node.js, Express.js
 
-Database: MongoDB with Vector Index
+- Database: MongoDB with Vector Index
 
-Cloud & AI: AWS S3, OpenAI
+- Cloud & AI: AWS S3, OpenAI
 
-Monorepo: NX
+- Monorepo: NX
+
+Try It Out
+
+1. Go to [the app link](https://d2ljo5appsfnc2.cloudfront.net/)  
+2. Sign up for an account  
+3. Upload PDF documents  
+4. Perform searches from the **Search** page  
