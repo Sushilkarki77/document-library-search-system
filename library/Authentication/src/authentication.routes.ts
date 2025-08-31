@@ -1,7 +1,7 @@
 
 import { Route } from '@angular/router';
-import { Login } from './Login/login';
-import { Register } from './Register/Register';
+import { Login } from './lib/Login/login';
+import { Register } from './lib/Register/Register';
 
 
 export const AuthenticationRoutes: Route[] = [
