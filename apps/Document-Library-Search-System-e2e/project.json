@@ -1,9 +1,0 @@
-{
-  "name": "Document-Library-Search-System-e2e",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "sourceRoot": "apps/Document-Library-Search-System-e2e/src",
-  "implicitDependencies": ["Document-Library-Search-System"],
-  "// targets": "to see all targets run: nx show project Document-Library-Search-System-e2e --web",
-  "targets": {}
-}
