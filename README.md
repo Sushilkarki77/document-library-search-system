@@ -29,6 +29,25 @@ Tech Stack
 
 - Monorepo: NX
 
+
+Project Structure
+.
+├── apps/
+│   ├── document-library-backend/      # Backend (Express.js)
+│   └── document-library-search-system/ # Frontend (Angular)
+│
+├── libs/                              # Shared libraries across applications
+│   ├── authentication/                # Authentication domain logic
+│   ├── common/                        # Common utilities, components, and services
+│   └── dashboard/                     # Dashboard-specific modules & features
+│
+├── nx.json                            # Nx configuration
+├── workspace.json                     # Workspace configuration
+├── tsconfig.base.json                 # Base TypeScript configuration
+└── README.md
+
+
+
 Try It Out
 
 1. Go to [the app link](https://d2ljo5appsfnc2.cloudfront.net/)  
