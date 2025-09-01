@@ -30,21 +30,43 @@ Tech Stack
 - Monorepo: NX
 
 
-Project Structure
-.
-├── apps/
-│   ├── document-library-backend/      # Backend (Express.js)
-│   └── document-library-search-system/ # Frontend (Angular)
-│
-├── libs/                              # Shared libraries across applications
-│   ├── authentication/                # Authentication domain logic
-│   ├── common/                        # Common utilities, components, and services
-│   └── dashboard/                     # Dashboard-specific modules & features
-│
-├── nx.json                            # Nx configuration
-├── workspace.json                     # Workspace configuration
-├── tsconfig.base.json                 # Base TypeScript configuration
-└── README.md
+
+---
+
+## ⚙️ Applications
+
+### **Frontend: `document-library-search-system`**
+- Built with **Angular**
+- Provides the user interface for document management and search
+- Organized into **domains** for modular feature development:
+  - **Authentication** – login, signup, session handling
+  - **Dashboard** – document listing, uploads, analytics
+  - **Common** – shared UI components and services
+
+### **Backend: `document-library-backend`**
+- Built with **Express.js**
+- Provides REST APIs for:
+  - User authentication
+  - Document upload and retrieval
+  - Search functionality (document queries, indexing)
+
+---
+
+## 📦 Shared Libraries
+
+Located in the `libs/` directory, these modules promote **reusability and clean architecture**:
+
+- **Authentication** → Authentication flows, guards, services  
+- **Common** → UI components, directives, pipes, and shared utilities  
+- **Dashboard** → Features and services for dashboard functionality  
+
+---
+
+## 🚀 Getting Started
+
+### 1. Install Dependencies
+```bash
+npm install
 
 
 
