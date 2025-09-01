@@ -30,7 +30,6 @@ Tech Stack
 - Monorepo: NX
 
 
-
 ---
 
 ## ⚙️ Applications
@@ -67,7 +66,14 @@ Located in the `libs/` directory, these modules promote **reusability and clean 
 ### 1. Install Dependencies
 ```bash
 npm install
+nx serve document-library-backend
+nx serve document-library-search-system
+nx serve document-library-search-system
+nx lint <project-name>
+nx test <project-name>
+nx build <project-name>
 
+---
 
 
 Try It Out
