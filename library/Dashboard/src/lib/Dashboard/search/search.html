@@ -6,15 +6,13 @@
 <div class="search-box-wrapper" style="position: relative;">
     <div class="search-input-wrapper mb-1" [ngClass]="{ 'searched': $searchState() !== 'before-start'  }">
         <div class="input-wrapper">
-            <input [value]="searchQuery()" (input)="searchInputChange($any($event.target).value)" class="search-box"
+            <input [value]="searchQuery()" (input)="searchInputChange($any($event.target).value)" (focus)="handleInputFocus()" class="search-box"
                 placeholder="Search or ask question" (keyup.enter)="onSearch()" />
             <button mat-icon-button color="primary" class="send-button" (click)="onSearch()">
                 <mat-icon>arrow_forward</mat-icon>
             </button>
 
-            @if (typeaheadResults())
-
-            {
+            @if (typeaheadResults() && $searchInputState() === 'active') {
             <div>
                 @let results = typeaheadResults()?.resultItems;
                 @if(results && results.length > 0) {

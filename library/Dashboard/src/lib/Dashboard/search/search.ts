@@ -28,6 +28,7 @@ export class Search {
   searchQuery = signal<string>('');
   $searchResponse = signal<SearchResponse | null>(null);
   $searchState = signal<'before-start' | 'started' | 'completed' | 'failed'>('before-start');
+  $searchInputState = signal<'inactive' | 'active'>('inactive');
   $pageIndex = signal<number>(0);
 
   route = inject(ActivatedRoute);
@@ -40,9 +41,15 @@ export class Search {
 
   typeaheadResults = signal<SearchResponse | null>(null);
 
+  handleInputFocus() {
+    console.log("active")
+    this.$searchInputState.set("active");
+  }
+
 
   searchInputChange(text: string) {
     this.searchQuery.set(text);
+    if( this.$searchInputState() != "active") this.$searchInputState.set("active");
   }
 
   inputChange = effect(() => {
@@ -70,8 +77,8 @@ export class Search {
         debounceTime(200),
         map(value => value.trim()),
         switchMap(value => {
-          if (!value ||  this.$searchState() == 'started') {
-            this.typeaheadResults.set(null);
+          if (!value || this.$searchState() == 'started') {
+
             return EMPTY;
           }
           return this.searchService.searchExecute(value, 0, 5).pipe(
@@ -90,9 +97,10 @@ export class Search {
 
     if (event.target && this.hasSearchWrapper(event.target as HTMLElement)) {
       console.log('Click happened inside .input-wrapper');
+
     } else {
-      this.typeaheadResults.set(null);
       console.log('Click happened outside');
+      this.$searchInputState.set('inactive');
     }
   }
 
@@ -114,13 +122,14 @@ export class Search {
         this.searchQuery.set(params['query']);
         this.$searchState.set('started');
         const pageIndex = Number(params['pageIndex'] ?? 0);
-        this.typeaheadResults.set(null);
+        this.$searchInputState.set('inactive');
         return this.searchService.searchExecute(params['query'], (pageIndex * this.pageSize), this.pageSize);
       })
     ).subscribe({
       next: (res) => {
         this.$searchState.set('completed');
         this.$searchResponse.set(res.data);
+
       },
       error: (e) => {
         console.log(e);
