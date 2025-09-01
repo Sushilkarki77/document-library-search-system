@@ -71,7 +71,7 @@ nx serve document-library-search-system
 nx serve document-library-search-system
 nx lint <project-name>
 nx test <project-name>
-nx build <project-name>
+nx build <project-name> ```
 
 ---
 
