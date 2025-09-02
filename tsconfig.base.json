@@ -18,6 +18,7 @@
       "@document-library-search-system/Authentication": [
         "library/Authentication/src/index.ts"
       ],
+      "@document-library-search-system/Chat": ["library/Chat/src/index.ts"],
       "@document-library-search-system/Common": ["library/Common/src/index.ts"],
       "@document-library-search-system/Dashboard": [
         "library/Dashboard/src/index.ts"
