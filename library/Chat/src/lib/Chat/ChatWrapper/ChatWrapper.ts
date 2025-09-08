@@ -15,13 +15,15 @@ import { Chat } from "../Chat";
      .chat-wrapper {
         display: block;
         height: 100%;
-        padding: 2% 5% 5%;
+        padding: 2% 5% 2%;
      }
 
      lib-chat {
         background: white;
         box-shadow: var(--default-shadow);
         border-radius: 8px;
+        max-width: 768px;
+        margin: auto;
      }
     `,
     template: `<div class="chat-wrapper">

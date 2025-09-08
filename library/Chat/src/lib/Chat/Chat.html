@@ -1,17 +1,25 @@
-<div class="">
-
-
-    <div class="search-box-wrapper" style="position: relative;">
-    <div class="search-input-wrapper mb-1" >
-        <div class="input-wrapper">
-            <input  class="search-box"
-                placeholder="Ask question"  />
-            <button mat-icon-button color="primary" class="send-button" >
-                <mat-icon>arrow_forward</mat-icon>
-            </button>
-
-        </div>
-
-    </div>
-
+<div>
+    @for (item of chats; track $index) {
+    <div [class.question-box]="item.type === 'Question'" [class.answer-box]="item.type === 'Answer'"
+        class="question-box">{{item.text}}</div>
+    }
+    @if(state === 'Loading') {
+    <div class="answer-box loading"><mat-progress-bar mode="buffer"></mat-progress-bar></div>
+    }
 </div>
+
+
+
+<div class="">
+    <div class="search-box-wrapper" style="position: relative;">
+        <div class="search-input-wrapper mb-1">
+            <div class="input-wrapper">
+
+                <input [value]="chatInpput()" (input)="chatInputChange($any($event.target).value)" (keyup.enter)="onEnterPressed()" class="search-box"
+                    placeholder="Ask question" />
+                <button mat-icon-button color="primary" class="send-button">
+                    <mat-icon>arrow_forward</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>

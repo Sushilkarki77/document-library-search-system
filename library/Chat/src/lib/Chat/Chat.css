@@ -3,6 +3,7 @@
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+  justify-content: space-between;
 }
 .search-box-wrapper {
   flex-grow: 1;
@@ -66,4 +67,27 @@
   transform: translateY(-50%);
   height: 2.25rem;
   width: 2.25rem;
+}
+
+.question-box,
+.answer-box {
+  padding: 1rem;
+  background: aliceblue;
+  max-width: 600px;
+
+  /* margin: 1rem 1rem auto; */
+}
+
+.question-box {
+  border-radius: 0.5rem 0 0.5rem 0.5rem;
+  margin: 1rem 1rem 1rem auto;
+}
+
+.answer-box {
+  border-radius: 0.5rem 0.5rem 0.5rem 0;
+  margin: 1rem auto 1rem 1rem;
+}
+
+.answer-box.loading {
+  padding: 1.5rem;
 }
