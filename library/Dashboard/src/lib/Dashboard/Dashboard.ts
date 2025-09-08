@@ -5,6 +5,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '@document-library-search-system/Common';
 
+
+
 @Component({
   selector: 'lib-dashboard',
   imports: [MatToolbarModule, MatButtonModule, RouterModule, MatButtonModule, MatMenuModule],
@@ -12,5 +14,5 @@ import { AuthService } from '@document-library-search-system/Common';
   styleUrl: './Dashboard.css',
 })
 export class Dashboard {
-    authService = inject(AuthService);
+  authService = inject(AuthService);
 }

@@ -1,12 +1,20 @@
 <mat-toolbar class="navbar">
     <div class="logo"> <img width="100px" alt="Logo" className='logo-dashboard' src="logo.png" /></div>
     <span class="spacer"></span>
-     <a mat-button routerLink="/dashboard/chat"  class="nav-link"
-        routerLinkActive="active-nav"><span class="nav-text">Chat</span> </a>
-    <a mat-button routerLink="/dashboard/search" [queryParamsHandling]="'preserve'" class="nav-link"
-        routerLinkActive="active-nav"><span class="nav-text">Search</span> </a>
-    <a mat-button routerLink="/dashboard/documents" class="nav-link" [queryParamsHandling]="'preserve'"
-        routerLinkActive="active-nav" [routerLinkActiveOptions]="{ exact: true }">Documents</a>
+
+
+    <div class="menu-items">
+        <a mat-button routerLink="/dashboard/chat" class="nav-link" routerLinkActive="active-nav">
+             <span class="nav-text">Chat</span> </a>
+        <a mat-button routerLink="/dashboard/search" [queryParamsHandling]="'preserve'" class="nav-link"
+            routerLinkActive="active-nav">  <span class="nav-text">Search</span> </a>
+        <a mat-button routerLink="/dashboard/documents" class="nav-link" [queryParamsHandling]="'preserve'"
+            routerLinkActive="active-nav" [routerLinkActiveOptions]="{ exact: true }">
+            
+            <span class="nav-text">Documents</span>
+        </a>
+    </div>
+
 
     <button matButton="outlined" class="profile-btn ml-1"
         [matMenuTriggerFor]="menu">{{authService.getUser().fullname.split(' ')[0] }}</button>

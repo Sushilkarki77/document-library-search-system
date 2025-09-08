@@ -40,10 +40,17 @@
 .nav-link {
   height: 100%;
   border-radius: 0;
+  min-width: 48px;
+  padding: 0;
 }
 
 .nav-link.active-nav {
   border-bottom: solid 2px var(--primary-color);
+}
+
+.menu-items {
+  display: block;
+  height: 100%;
 }
 
 .nav-link.active-nav,
@@ -65,12 +72,9 @@
   display: block;
 }
 
-
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
   .logo img {
-    width: 85px;   
-    height: auto; 
-    
+    width: 85px;
+    height: auto;
   }
-
 }

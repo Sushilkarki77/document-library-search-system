@@ -157,6 +157,11 @@ button.mat-raised-button:hover {
     
   }
 
+  .nav-text {
+    /* display: none; */
+    margin-left: 0rem;
+  }
+
   .mat-toolbar.navbar {
    padding: 0.15rem 0.35rem !important;
   }
