@@ -24,6 +24,8 @@ import { Chat } from "../Chat";
         border-radius: 8px;
         max-width: 768px;
         margin: auto;
+        max-height: 86vh;
+
      }
     `,
     template: `<div class="chat-wrapper">

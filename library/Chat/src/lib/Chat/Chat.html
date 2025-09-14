@@ -1,7 +1,16 @@
-<div>
+<div class="chat-answer-wrapper">
     @for (item of chats; track $index) {
     <div [class.question-box]="item.type === 'Question'" [class.answer-box]="item.type === 'Answer'"
-        class="question-box">{{item.text}}</div>
+    
+    class="question-box"> 
+
+     @if(item.type === 'Question'){
+        {{item.text}}
+     } @else {
+        <lib-safe-html [$content] = "item.text"></lib-safe-html>
+     }
+    
+    </div>
     }
     @if(state === 'Loading') {
     <div class="answer-box loading"><mat-progress-bar mode="buffer"></mat-progress-bar></div>
@@ -10,7 +19,7 @@
 
 
 
-<div class="">
+<div >
     <div class="search-box-wrapper" style="position: relative;">
         <div class="search-input-wrapper mb-1">
             <div class="input-wrapper">

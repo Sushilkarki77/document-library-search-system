@@ -3,6 +3,7 @@ import { ChunkModel } from '../models/chunk.model';
 import { Types } from 'mongoose';
 import { ResponseChunk, SearchResult } from '../types/interfaces';
 
+
 const vectorIndexName = process.env.VECTOR_INDEX as string;
 
 const openAi = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -95,11 +96,12 @@ export const runSearch = async (
   user_query: string,
   userId: string,
   skip = 0,
-  limit = 10
+  limit = 10,
+  chatQuery = false
 ): Promise<SearchResult> => {
   const [result, isquestion] = await Promise.all([
     search(user_query, userId, skip, limit),
-    isQuestion(user_query),
+    chatQuery === false ? isQuestion(user_query) : true,
   ]);
   if (!isquestion) return { resultItems: result || [] };
 

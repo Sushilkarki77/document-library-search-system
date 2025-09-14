@@ -90,4 +90,12 @@
 
 .answer-box.loading {
   padding: 1.5rem;
+  max-width: 110px
 }
+
+.chat-answer-wrapper {
+  overflow: auto;
+  padding: 1rem;
+}
+
+   

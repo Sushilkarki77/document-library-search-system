@@ -33,3 +33,21 @@ export const searchQueryHandler: RequestHandler<
     next(error);
   }
 };
+
+
+export const chatQueryHandler: RequestHandler<unknown, ResponseItem<{ answer: string }>, unknown, { query: string }> = async (req, res, next) => {
+  try {
+    const { query } = req.query;
+    if (!query) throw new ErrorWithStatus('Search query is required!', 400);
+
+    const searchRes = await runSearch(query, req.user._id, 0, 10, true);
+
+    const { answer } = searchRes;
+
+    console.log(answer)
+
+    res.status(200).json({ status: true, message: 'success', data: { answer } });
+  } catch (error) {
+    next(error);
+  }
+}
