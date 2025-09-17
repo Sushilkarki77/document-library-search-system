@@ -1,4 +1,4 @@
-import { Component, inject, model } from '@angular/core';
+import { Component, ElementRef, inject, model, ViewChild } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -21,6 +21,9 @@ export class Chat {
 
   apiService = inject(Chatservice);
 
+  @ViewChild('chatAnswerWrapper') chatAnswerWrapper!: ElementRef;
+
+
   state: 'Loading' | 'Loaded' = 'Loaded';
 
   chats: ChatObject[] = [
@@ -37,10 +40,19 @@ export class Chat {
   onEnterPressed = () => {
     this.chats.push({ text: this.chatInpput(), type: 'Question' });
     this.state = 'Loading';
+    this.scrolltoBottomOfthePage();
     this.apiService.chatExecute(this.chatInpput()).subscribe(res => {
-      this.chats.push({text: res.data.answer || 'Sorry could not generate answer!', type: 'Answer'})
+      this.chats.push({ text: res.data.answer || 'Sorry could not generate answer!', type: 'Answer' })
       this.state = 'Loaded';
+      this.scrolltoBottomOfthePage();
     });
     this.chatInpput.set("");
+  }
+
+  scrolltoBottomOfthePage = () => {
+    setTimeout(() => {
+      const div = this.chatAnswerWrapper.nativeElement;
+      div.scrollTo({ top: div.scrollHeight, behavior: 'smooth' });
+    }, 100);
   }
 }

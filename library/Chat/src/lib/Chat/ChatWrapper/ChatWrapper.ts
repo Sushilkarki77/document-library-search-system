@@ -4,12 +4,14 @@ import { Chat } from "../Chat";
 
 
 @Component({
-    selector: 'lib-chat-wrapper',
-    imports: [Chat],
-    styles: `
+   selector: 'lib-chat-wrapper',
+   imports: [Chat],
+   styles: `
      :host {
-        display: block;
-        height: 100%;
+          display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-height: 0;
      }
 
      .chat-wrapper {
@@ -24,11 +26,9 @@ import { Chat } from "../Chat";
         border-radius: 8px;
         max-width: 768px;
         margin: auto;
-        max-height: 86vh;
-
      }
     `,
-    template: `<div class="chat-wrapper">
+   template: `<div class="chat-wrapper">
         <lib-chat></lib-chat>
     </div>`
 

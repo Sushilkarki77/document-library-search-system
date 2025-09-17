@@ -1,4 +1,4 @@
-<div class="chat-answer-wrapper">
+<div class="chat-answer-wrapper" #chatAnswerWrapper>
     @for (item of chats; track $index) {
     <div [class.question-box]="item.type === 'Question'" [class.answer-box]="item.type === 'Answer'"
     
@@ -26,7 +26,7 @@
 
                 <input [value]="chatInpput()" (input)="chatInputChange($any($event.target).value)" (keyup.enter)="onEnterPressed()" class="search-box"
                     placeholder="Ask question" />
-                <button mat-icon-button color="primary" class="send-button">
+                <button mat-icon-button color="primary" class="send-button" (click)="onEnterPressed()">
                     <mat-icon>arrow_forward</mat-icon>
                 </button>
             </div>

@@ -77,4 +77,8 @@
     width: 85px;
     height: auto;
   }
+
+  .menu-items {
+    padding-left: 15px;
+  }
 }
