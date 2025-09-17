@@ -29,6 +29,55 @@ Tech Stack
 
 - Monorepo: NX
 
+
+---
+
+## ⚙️ Applications
+
+### **Frontend: `document-library-search-system`**
+- Built with **Angular**
+- Provides the user interface for document management and search
+- Organized into **domains** for modular feature development:
+  - **Authentication** – login, signup, session handling
+  - **Dashboard** – document listing, uploads, analytics
+  - **Common** – shared UI components and services
+
+### **Backend: `document-library-backend`**
+- Built with **Express.js**
+- Provides REST APIs for:
+  - User authentication
+  - Document upload and retrieval
+  - Search functionality (document queries, indexing)
+
+---
+
+## 📦 Shared Libraries
+
+Located in the `libs/` directory, these modules promote **reusability and clean architecture**:
+
+- **Authentication** → Authentication flows, guards, services  
+- **Common** → UI components, directives, pipes, and shared utilities  
+- **Dashboard** → Features and services for dashboard functionality  
+
+---
+
+## 🚀 Getting Started
+
+### 1. Install Dependencies
+
+```
+npm install
+nx serve document-library-backend
+nx serve document-library-search-system
+nx serve document-library-search-system
+nx lint <project-name>
+nx test <project-name>
+nx build <project-name>
+```
+
+---
+
+
 Try It Out
 
 1. Go to [the app link](https://d2ljo5appsfnc2.cloudfront.net/)  
